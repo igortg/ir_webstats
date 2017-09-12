@@ -53,6 +53,7 @@ URL_LASTRACE_STATS = 'http://members.iracing.com/memberstats/member/GetLastRaces
 URL_RESULTS_ARCHIVE = 'http://members.iracing.com/memberstats/member/GetResults'
 URL_SEASON_STANDINGS = 'http://members.iracing.com/memberstats/member/GetSeasonStandings'
 URL_SEASON_STANDINGS2 = 'http://members.iracing.com/membersite/member/statsseries.jsp'
+URL_SEASONS = 'http://members.iracing.com/membersite/member/GetSeasons?onlyActive=0'
 URL_HOSTED_RESULTS = 'http://members.iracing.com/memberstats/member/GetPrivateSessionResults'
 URL_SELECT_SERIES = 'http://members.iracing.com/membersite/member/SelectSeries.do?&season=%s&view=undefined&nocache=%s'
 URL_SESSION_TIMES = 'http://members.iracing.com/membersite/member/GetSessionTimes'#T-m-d
