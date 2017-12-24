@@ -408,8 +408,12 @@ class iRWebStats:
         """
         if not os.path.isfile(self._all_seasons_filename):
             self.update_all_seasons()
-        with open(self._all_seasons_filename) as all_seasons_file:
-            return json.load(all_seasons_file)
+        try:
+            with open(self._all_seasons_filename) as all_seasons_file:
+                return json.load(all_seasons_file)
+        except ValueError:
+            os.remove(self._all_seasons_filename)
+            pprint("Problems loading Seasons cache. Try again")
 
     @logged_in
     def update_all_seasons(self):
@@ -420,10 +424,11 @@ class iRWebStats:
         all_seasons_filename = self._all_seasons_filename
         if not os.path.isdir(os.path.dirname(all_seasons_filename)):
             os.mkdir(os.path.dirname(all_seasons_filename))
-        with open(all_seasons_filename, 'w') as all_seasons_file:
+        with open(all_seasons_filename, 'wb') as all_seasons_file:
             resp = self._req(ct.URL_SEASONS)
             resp = resp.replace('+', ' ')
-            all_seasons_file.write(resp)
+            all_seasons_file.write(resp.encode("utf8"))
+            all_seasons_file.flush()
 
     @logged_in
     def season_standings(self, season, carclass, club=ct.ALL, raceweek=ct.ALL,
